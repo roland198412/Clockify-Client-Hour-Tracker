@@ -51,15 +51,17 @@ type HttpClient struct {
 	client   http.Client
 	endPoint string
 	apiKey   string
+	clientId string
 }
 
-func NewClockifyClient(endPoint string, apiKey string) *HttpClient {
+func NewClockifyClient(endPoint, apiKey, clientId string) *HttpClient {
 	return &HttpClient{
 		client: http.Client{
 			Timeout: 60 * time.Second,
 		},
 		endPoint: endPoint,
 		apiKey:   apiKey,
+		clientId: clientId,
 	}
 }
 
@@ -72,7 +74,7 @@ func (cr *HttpClient) GetCurrentMonthHoursWorked(startDate, endDate time.Time) (
 			"groups": []string{"PROJECT"},
 		},
 		"clients": map[string]interface{}{
-			"ids": []string{"669ff6e9f23c475d3e116054"},
+			"ids": []string{cr.clientId},
 		},
 	}
 

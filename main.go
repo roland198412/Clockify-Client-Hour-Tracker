@@ -18,6 +18,7 @@ func main() {
 	workspaceId := os.Getenv("WORKSPACE_ID")
 	apiKey := os.Getenv("CLOCKIFY_API_KEY")
 	clientName := os.Getenv("CLIENT_NAME")
+	clientId := os.Getenv("CLIENT_ID")
 
 	// Read environment variables outside of the client
 	smtpHost := os.Getenv("SMTP_HOST")
@@ -42,7 +43,7 @@ func main() {
 	// Subtract 1 second to get the last moment of the current month
 	endOfMonth := firstOfNextMonth.Add(-time.Second)
 
-	clockifyClient := client.NewClockifyClient(endPoint, apiKey)
+	clockifyClient := client.NewClockifyClient(endPoint, apiKey, clientId)
 	hoursWorkedInSeconds, err := clockifyClient.GetCurrentMonthHoursWorked(beginningOfMonth, endOfMonth)
 
 	if err != nil {
