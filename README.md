@@ -47,6 +47,13 @@ cd clockify-client-hour-tracker
 
 ```bash
 go build -o hour-tracker
+
+# Build for Linux (ARM64):
+GOOS=linux GOARCH=arm64 go build -o hour-tracker
+
+# Build for Linux (x86_64):
+GOOS=linux GOARCH=amd64 go build -o hour-tracker
+
 ```
 
 ---
