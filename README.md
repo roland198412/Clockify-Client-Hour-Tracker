@@ -39,5 +39,5 @@ If a client allocates **50 hours per month**, and there are **21 workdays** in t
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/roland198412/clockify-client-hour-tracker.git
+git clone https://github.com/roland198412/Clockify-Client-Hour-Tracker.git
 cd clockify-client-hour-tracker
