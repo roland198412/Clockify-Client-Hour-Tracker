@@ -43,12 +43,6 @@ git clone https://github.com/roland198412/Clockify-Client-Hour-Tracker.git
 cd clockify-client-hour-tracker
 ```
 
-2. Build the application
-
-```bash
-go build -o hour-tracker
-```
-
 2. Build the application:
 
 ```bash
