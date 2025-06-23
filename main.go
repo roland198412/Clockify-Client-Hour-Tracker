@@ -95,7 +95,7 @@ func main() {
       <tr><td><strong>Client:</strong></td><td>%s</td></tr>
       <tr><td><strong>Monthly Hour Limit:</strong></td><td>%d hours</td></tr>
       <tr><td><strong>Days Remaining in Month:</strong></td><td>%d</td></tr>
-      <tr><td><strong>Days Remaining in Excluding Today::</strong></td><td>%d</td></tr>
+      <tr><td><strong>Days Remaining in Excluding Today:</strong></td><td>%d</td></tr>
       <tr><td><strong>Total Time Logged:</strong></td><td>%s</td></tr>
       <tr><td><strong>Remaining Time Available:</strong></td><td>%s</td></tr>
       <tr><td><strong>Daily Target to Meet Goal:</strong></td><td>%s</td></tr>
