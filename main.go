@@ -57,6 +57,13 @@ func main() {
 	remainingSeconds := monthlyLimitInSeconds - hoursWorkedInSeconds
 	dailySecondAverage := remainingSeconds / int64(daysRemainingTillMonthEnd)
 
+	daysRemainingTillMonthEndExclToday := 0
+	if utils.IsTomorrowAWeekDay() && daysRemainingTillMonthEnd != 0 {
+		daysRemainingTillMonthEndExclToday = daysRemainingTillMonthEnd - 1
+	}
+
+	dailyExclTodaySecondAverage := remainingSeconds / int64(daysRemainingTillMonthEndExclToday)
+
 	if debugMode {
 		fmt.Println("Now:          ", beginningOfMonth.Format(time.DateTime))
 		fmt.Println("End of month: ", endOfMonth.Format(time.DateTime))
@@ -64,9 +71,11 @@ func main() {
 		fmt.Println(fmt.Sprintf("%-35s %s", "Client:", clientName))
 		fmt.Println(fmt.Sprintf("%-35s %d hours", "Monthly Hour Limit:", monthlyHourLimit))
 		fmt.Println(fmt.Sprintf("%-35s %d", "Days Remaining in Month:", daysRemainingTillMonthEnd))
+		fmt.Println(fmt.Sprintf("%-35s %d", "Days Remaining in Excluding Today:", daysRemainingTillMonthEndExclToday))
 		fmt.Println(fmt.Sprintf("%-35s %s", "Total Time Logged:", utils.FormatSecondsToHHMMSS(hoursWorkedInSeconds)))
 		fmt.Println(fmt.Sprintf("%-35s %s", "Remaining Time Available:", utils.FormatSecondsToHHMMSS(remainingSeconds)))
 		fmt.Println(fmt.Sprintf("%-35s %s", "Daily Target to Meet Goal:", utils.FormatSecondsToHHMMSS(dailySecondAverage)))
+		fmt.Println(fmt.Sprintf("%-35s %s", "Excluding Today Daily Target to Meet Goal:", utils.FormatSecondsToHHMMSS(dailyExclTodaySecondAverage)))
 	}
 
 	parsedSmtpPort, err := strconv.Atoi(smtpPort)
@@ -86,9 +95,11 @@ func main() {
       <tr><td><strong>Client:</strong></td><td>%s</td></tr>
       <tr><td><strong>Monthly Hour Limit:</strong></td><td>%d hours</td></tr>
       <tr><td><strong>Days Remaining in Month:</strong></td><td>%d</td></tr>
+      <tr><td><strong>Days Remaining in Excluding Today::</strong></td><td>%d</td></tr>
       <tr><td><strong>Total Time Logged:</strong></td><td>%s</td></tr>
       <tr><td><strong>Remaining Time Available:</strong></td><td>%s</td></tr>
       <tr><td><strong>Daily Target to Meet Goal:</strong></td><td>%s</td></tr>
+      <tr><td><strong>Excluding Today Daily Target to Meet Goal:</strong></td><td>%s</td></tr>
     </table>
   </body>
 </html>`,
@@ -100,9 +111,11 @@ func main() {
 		clientName,
 		monthlyHourLimit,
 		daysRemainingTillMonthEnd,
+		daysRemainingTillMonthEndExclToday,
 		utils.FormatSecondsToHHMMSS(hoursWorkedInSeconds),
 		utils.FormatSecondsToHHMMSS(remainingSeconds),
 		utils.FormatSecondsToHHMMSS(dailySecondAverage),
+		utils.FormatSecondsToHHMMSS(dailyExclTodaySecondAverage),
 	)
 
 	if err := smtpClient.Send(from, to, subject, body, "text/html"); err != nil {

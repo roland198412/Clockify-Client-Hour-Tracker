@@ -37,3 +37,20 @@ func TotalWeekdaysBetweenTwoDates(startDate, endDate time.Time) int {
 
 	return count
 }
+
+// IsTomorrowAWeekDay Testing to see if tomorrow is a weekday
+func IsTomorrowAWeekDay() bool {
+	today := time.Now()
+
+	// Add one day to get tomorrow
+	tomorrow := today.AddDate(0, 0, 1)
+
+	// Get the weekday of tomorrow
+	weekday := tomorrow.Weekday()
+
+	if weekday == time.Saturday || weekday == time.Sunday {
+		return false
+	} else {
+		return true
+	}
+}
