@@ -71,7 +71,7 @@ func (c *SMTPClient) Send(from string, to []string, subject, body, contentType s
 	msg += body
 	_, err = wc.Write([]byte(msg))
 	if err != nil {
-		return fmt.Errorf("Write message error: %w", err)
+		return fmt.Errorf("write message error: %w", err)
 	}
 
 	return nil
