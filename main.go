@@ -58,11 +58,15 @@ func main() {
 	dailySecondAverage := remainingSeconds / int64(daysRemainingTillMonthEnd)
 
 	daysRemainingTillMonthEndExclToday := 0
-	if utils.IsTomorrowAWeekDay() && daysRemainingTillMonthEnd != 0 {
+	if daysRemainingTillMonthEnd != 0 {
 		daysRemainingTillMonthEndExclToday = daysRemainingTillMonthEnd - 1
 	}
 
-	dailyExclTodaySecondAverage := remainingSeconds / int64(daysRemainingTillMonthEndExclToday)
+	var dailyExclTodaySecondAverage int64 = remainingSeconds
+
+	if daysRemainingTillMonthEndExclToday != 0 {
+		dailyExclTodaySecondAverage = remainingSeconds / int64(daysRemainingTillMonthEndExclToday)
+	}
 
 	if debugMode {
 		fmt.Println("Now:          ", beginningOfMonth.Format(time.DateTime))
