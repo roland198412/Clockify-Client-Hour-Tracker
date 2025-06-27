@@ -62,7 +62,7 @@ func main() {
 		daysRemainingTillMonthEndExclToday = daysRemainingTillMonthEnd - 1
 	}
 
-	var dailyExclTodaySecondAverage int64 = remainingSeconds
+	var dailyExclTodaySecondAverage = remainingSeconds
 
 	if daysRemainingTillMonthEndExclToday != 0 {
 		dailyExclTodaySecondAverage = remainingSeconds / int64(daysRemainingTillMonthEndExclToday)
