@@ -110,7 +110,11 @@ func (cr *HttpClient) GetCurrentMonthHoursWorked(startDate, endDate time.Time) (
 			log.Fatal(err)
 		}
 
-		duration := reportData.GroupOne[0].Duration
+		var duration int64
+
+		if len(reportData.GroupOne) > 0 {
+			duration = reportData.GroupOne[0].Duration
+		}
 
 		return duration, nil
 	} else {
